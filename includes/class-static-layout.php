@@ -182,13 +182,13 @@ final class StaticLayout
              * Need to make it for calling widgets\AbstractWidget::render_widget()
              */
             require_once ABSPATH . WPINC . '/class-wp-customize-section.php';
-            do_action( static::NAME . '_before', $this, $data, $args );
+            do_action( static::NAME . "_{$this->_panel}_before", $this, $data, $args );
 
             foreach ( $this->_widgets as $number => $widget ) {
                 $this->_render_widget( !empty( $data[ $number ] ) ? $data[ $number ] : [], $number, $widget );
             }
 
-            do_action( static::NAME . '_after', $this, $data, $args );
+            do_action( static::NAME . "_{$this->_panel}_after", $this, $data, $args );
         }
     }
 
@@ -203,9 +203,9 @@ final class StaticLayout
     {
         $id = static::NAME . "_{$this->_panel}[$number]";
         $attrs = static::get_widget_attrs( $id, $widget_class::get_args() );
-        echo apply_filters( static::NAME . '_before_widget', "<div $attrs>", $number, $attrs );
+        echo apply_filters( static::NAME . "_{$this->_panel}_before_widget", "<div $attrs>", $number, $attrs );
         $widget_class::render_widget( $data, $id, $number );
-        echo apply_filters( static::NAME . '_after_widget', '</div>', $number, $attrs );
+        echo apply_filters( static::NAME . "_{$this->_panel}_after_widget", '</div>', $number, $attrs );
     }
 
     /**
