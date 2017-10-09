@@ -57,7 +57,7 @@ final class StaticLayout
             $this->_includes();
             $this->_register( $wp_customize );
         }, 20 );
-        add_action( static::NAME . "_{$panel}_render", function ($args ) {
+        add_action( static::NAME . "_{$panel}_render", function ( $args ) {
             $this->_includes();
             $this->_render( $args );
         } );

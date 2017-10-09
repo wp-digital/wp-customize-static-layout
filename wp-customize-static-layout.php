@@ -3,7 +3,7 @@
  * Plugin Name: Customize Static Layout
  * Description: Manage static layout via the Customizer.
  * Plugin URI: https://github.com/redink-no/wp-customize-static-layout
- * Version: 0.0.1
+ * Version: 0.0.2
  * Author: Innocode
  * Author URI: https://innocode.no/
  * Tested up to: 4.8.2
@@ -11,13 +11,13 @@
  *
  * @package CustomizeStaticLayout
  */
-define( 'CUSTOMIZE_STATIC_LAYOUT', '0.0.1' );
+define( 'CUSTOMIZE_STATIC_LAYOUT', '0.0.2' );
+
+require_once __DIR__ . '/includes/class-static-layout.php';
 
 if ( version_compare( phpversion(), '5.5', '>=' ) ) {
     add_action( 'init', function () {
         global $customize_static_layout;
-
-        require_once __DIR__ . '/includes/class-static-layout.php';
 
         $customize_static_layout = [];
 
@@ -48,4 +48,14 @@ function _customize_static_layout_php_version_error() {
  */
 function _customize_static_layout_php_version_text() {
     return __( 'Customize Static Layout plugin error: Your version of PHP is too old to run this plugin. You must be running PHP 5.5 or higher.', 'customize-static-layout' );
+}
+
+/**
+ * Displays static layout
+ *
+ * @param string $panel
+ * @param array  $args
+ */
+function customize_static_layout( $panel, array $args = [] ) {
+    do_action( CustomizeStaticLayout\StaticLayout::NAME . "_{$panel}_render", $args );
 }
