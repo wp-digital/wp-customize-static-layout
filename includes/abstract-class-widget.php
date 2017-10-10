@@ -87,8 +87,9 @@ abstract class AbstractWidget extends \WP_Customize_Section
      * @param array  $data
      * @param string $id
      * @param int    $number
+     * @param string $attrs
      */
-    public static function render_widget( array $data, $id, $number )
+    public static function render_widget( array $data, $id, $number, $attrs )
     {
         // Implement render logic
     }

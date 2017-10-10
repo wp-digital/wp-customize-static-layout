@@ -160,7 +160,7 @@ final class StaticLayout
                     $data[ $setting->id_data()['keys'][1] ] = $setting->value();
                 }
 
-                $widget::render_widget( $data, $widget->id, $number );
+                $widget::render_widget( $data, $widget->id, $number, static::get_widget_attrs( $widget->id, $widget::get_args() ) );
             },
             'fallback_refresh'    => false,
         ] );
@@ -178,10 +178,6 @@ final class StaticLayout
         $data = get_option( static::NAME . "_{$this->_panel}" );
 
         if ( !empty( $data ) || is_customize_preview() ) {
-            /**
-             * Need to make it for calling widgets\AbstractWidget::render_widget()
-             */
-            require_once ABSPATH . WPINC . '/class-wp-customize-section.php';
             do_action( static::NAME . "_{$this->_panel}_before", $this, $data, $args );
 
             foreach ( $this->_widgets as $number => $widget ) {
@@ -204,7 +200,7 @@ final class StaticLayout
         $id = static::NAME . "_{$this->_panel}[$number]";
         $attrs = static::get_widget_attrs( $id, $widget_class::get_args() );
         echo apply_filters( static::NAME . "_{$this->_panel}_before_widget", "<div $attrs>", $number, $attrs );
-        $widget_class::render_widget( $data, $id, $number );
+        $widget_class::render_widget( $data, $id, $number, $attrs );
         echo apply_filters( static::NAME . "_{$this->_panel}_after_widget", '</div>', $number, $attrs );
     }
 
@@ -269,9 +265,13 @@ final class StaticLayout
 
     private function _includes()
     {
+        if ( !class_exists( 'WP_Customize_Section' ) ) {
+            require_once ABSPATH . WPINC . '/class-wp-customize-section.php';
+        }
+
         require_once __DIR__ . '/abstract-class-widget.php';
 
-        if ( class_exists( 'CustomizeObjectSelector\\Plugin' ) ) {
+        if ( class_exists( 'CustomizeObjectSelector\Plugin' ) ) {
             require_once __DIR__ . '/abstract-class-widget-post.php';
         }
     }
