@@ -10,6 +10,10 @@ namespace CustomizeStaticLayout;
 abstract class AbstractWidgetPost extends AbstractWidget
 {
     /**
+     * @var array
+     */
+    protected static $_post_query_vars = [];
+    /**
      * @var \WP_Query|null
      */
     protected static $_query = null;
@@ -69,10 +73,10 @@ abstract class AbstractWidgetPost extends AbstractWidget
         $this->add_control( 'id', [
             'label'           => __( 'Post', 'customize-static-layout' ),
             'type'            => 'object_selector',
-            'post_query_vars' => apply_filters( StaticLayout::NAME . '_widget_post_query_vars', [
-                'post_type'   => 'post',
+            'post_query_vars' => wp_parse_args( static::$_post_query_vars, apply_filters( StaticLayout::NAME . '_widget_post_query_vars', [
+                'post_type'   => [ 'post' ],
                 'post_status' => 'publish',
-            ] ),
+            ] ) ),
             'select2_options' => [
                 'allowClear'  => true,
                 'placeholder' => __( '&mdash; Select &mdash;', 'customize-static-layout' ),
