@@ -23,7 +23,7 @@ abstract class AbstractWidgetPost extends AbstractWidget
     protected static $_ids_settings = [];
 
     /**
-     * Constructor.
+     * Constructor
      *
      * @param \WP_Customize_Manager $manager
      * @param string                $id
