@@ -217,7 +217,7 @@ final class StaticLayout
             true
         );
         wp_localize_script( static::NAME, 'customizeStaticLayout', [
-            'panel' => $this->_panel,
+            'panel' => static::NAME . "_{$this->_panel}",
         ] );
     }
 
@@ -234,7 +234,7 @@ final class StaticLayout
             true
         );
         wp_localize_script( static::NAME . '-preview', 'customizeStaticLayoutPreview', [
-            'panel' => $this->_panel,
+            'panel' => static::NAME . "_{$this->_panel}",
         ] );
     }
 
