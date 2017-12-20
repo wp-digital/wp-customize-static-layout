@@ -151,7 +151,7 @@ final class StaticLayout
         $wp_customize->selective_refresh->add_partial( $key, [
             'settings'            => array_keys( $widget->get_controls() ),
             'selector'            => "[data-widget=\"$key\"]",
-            'container_inclusive' => false,
+            'container_inclusive' => true,
             'render_callback'     => function ( \WP_Customize_Partial $partial ) use ( $widget, $number ) {
                 $data = [];
 
