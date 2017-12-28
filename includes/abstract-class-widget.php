@@ -160,9 +160,9 @@ abstract class AbstractWidget extends \WP_Customize_Section
     public static function render_nested_widgets( array $data, $key, $parent_id, $widget_class )
     {
         if ( is_array( $data[ $key ] ) ) {
-            $indexes = array_keys( $data[ $key ] );
+            $indexes = array_filter( array_keys( $data[ $key ] ), 'is_int' );
 
-            if ( false !== ( $last_index = max( $indexes ) ) ) {
+            if ( !empty( $indexes ) && false !== ( $last_index = max( $indexes ) ) ) {
                 for ( $i = 0; $i <= $last_index; $i++ ) {
                     $id = "{$parent_id}[$key][$i]";
                     /**

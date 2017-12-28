@@ -62,7 +62,7 @@
 
             newData.pop();
 
-            setting.set(newData.length ? newData : null);
+            setting.set(newData);
             setting.callbacks.fireWith(setting, [newData, prevData]);
 
             api.control(id).index -= 1;
