@@ -17,7 +17,7 @@
         getLastWidgetIndex: function () {
             var indexes = this.getWidgetIndexes();
 
-            return indexes.length ? _.max(this.getWidgetIndexes()) : 0;
+            return indexes.length ? _.max(this.getWidgetIndexes()) : -1;
         },
         addWidget: function () {
             var widget = this.setting.id;
@@ -128,7 +128,7 @@
 
             this.index = 0;
 
-            if (lastIndex) {
+            if (lastIndex > -1) {
                 _.forEach(_.range(lastIndex + 1), function () {
                     this.addWidget();
                 }.bind(this));

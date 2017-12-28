@@ -60,9 +60,9 @@
             var prevData = setting.get();
             var newData = _.clone(prevData);
 
-            newData.pop()
+            newData.pop();
 
-            setting.set(newData);
+            setting.set(newData.length ? newData : null);
             setting.callbacks.fireWith(setting, [newData, prevData]);
 
             api.control(id).index -= 1;
