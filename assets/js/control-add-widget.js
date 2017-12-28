@@ -31,6 +31,10 @@
                     var prevData = setting.get();
                     var newData = _.clone(prevData);
 
+                    if (!_.isArray(newData)) {
+                        newData = [];
+                    }
+
                     if (!_.isObject(newData[index])) {
                         newData[index] = {};
                     }
