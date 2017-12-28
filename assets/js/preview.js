@@ -16,15 +16,17 @@
 
         api.preview.bind(settings.panel, function (widget) {
             var $widget = $('[data-widget="' + widget + '"]');
-            var top = $widget.offset().top;
+            var top = $widget.length ? $widget.offset().top : -1;
             var height = $widget.outerHeight(true);
             var viewportHeight = $window.height();
 
-            $doc.animate({
-                scrollTop: Math.min(top, top - viewportHeight / 2 + height / 2)
-            });
-            clearHightlighing();
-            $widget.addClass('widget-customizer-highlighted-widget');
+            if (top !== -1) {
+                $doc.animate({
+                    scrollTop: Math.min(top, top - viewportHeight / 2 + height / 2)
+                });
+                clearHightlighing();
+                $widget.addClass('widget-customizer-highlighted-widget');
+            }
         });
         $body.on('click', clearHightlighing);
     };

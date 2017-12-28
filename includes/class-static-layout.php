@@ -119,6 +119,8 @@ final class StaticLayout
      */
     private function _register( $wp_customize )
     {
+        $wp_customize->register_control_type( __NAMESPACE__ . '\\ControlEditWidget' );
+        $wp_customize->register_control_type( __NAMESPACE__ . '\\ControlAddWidget' );
         $wp_customize->add_panel( $this->_panel, $this->_settings );
 
         foreach ( $this->_widgets as $number => $widget ) {
@@ -273,6 +275,11 @@ final class StaticLayout
 
         if ( class_exists( 'CustomizeObjectSelector\Plugin' ) ) {
             require_once __DIR__ . '/abstract-class-widget-post.php';
+        }
+
+        if ( is_customize_preview() ) {
+            require_once __DIR__ . '/class-control-edit-widget.php';
+            require_once __DIR__ . '/class-control-add-widget.php';
         }
     }
 }

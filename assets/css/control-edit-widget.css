@@ -1,0 +1,16 @@
+.customize-control-customize_static_layout_edit_widget .customize_static_layout-edit-widget-button {
+    border-radius: 3px 0 0 3px;
+}
+.customize-control-customize_static_layout_edit_widget .customize_static_layout-remove-widget-button {
+    text-indent: 0;
+    border-radius: 0 3px 3px 0;
+    padding-left: 0;
+    padding-right: 0;
+    font-size: 14px;
+    width: 30px;
+}
+.customize-control-customize_static_layout_edit_widget .customize_static_layout-remove-widget-button:hover,
+.customize-control-customize_static_layout_edit_widget .customize_static_layout-remove-widget-button:active,
+.customize-control-customize_static_layout_edit_widget .customize_static_layout-remove-widget-button:focus {
+    color: #a00;
+}
