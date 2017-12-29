@@ -69,11 +69,16 @@
 
             return prevData[index];
         },
+        deactivateAllButtons: function () {
+            this.container.siblings('.' + this.container[0].className.split(/\s+/).join('.'))
+                .find('.' + settings.namespace + '-edit-widget-button')
+                .removeClass('active');
+
+            return this;
+        },
         _onClick: function (event) {
             event.preventDefault();
-            var widget = this.setting.id;
-
-            api.section(widget).expand();
+            api.section(this.setting.id).expand();
 
             return this;
         },
@@ -81,14 +86,33 @@
             event.preventDefault();
 
             if (confirm(this.params.l10n.confirmRemove)) {
+                this.deactivateAllButtons();
                 this.removeWidget();
             }
 
             return this;
         },
+        _onExpanded: function () {
+            this.container.find('.' + settings.namespace + '-edit-widget-button').addClass('active');
+            this.deactivateAllButtons();
+
+            return this;
+        },
+        _onCollapsed: function () {
+            this.container.find('.' + settings.namespace + '-edit-widget-button').removeClass('active');
+
+            return this;
+        },
         ready: function () {
+            var section = api.section(this.setting.id);
+
             this.container.find('.' + settings.namespace + '-edit-widget-button').on('click', this._onClick.bind(this));
             this.container.find('.' + settings.namespace + '-remove-widget-button').on('click', this._onRemoveClick.bind(this));
+
+            if (section) {
+                api.section(this.setting.id).container.on('expanded', this._onExpanded.bind(this));
+                api.section(this.setting.id).container.on('collapsed', this._onCollapsed.bind(this));
+            }
 
             return this;
         }

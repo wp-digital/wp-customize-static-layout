@@ -19,6 +19,11 @@
 
             return indexes.length ? _.max(this.getWidgetIndexes()) : -1;
         },
+        getParentContainer: function () {
+            var widget = api.section(this.section());
+
+            return widget.contentContainer.is('ul') ? widget.contentContainer : widget.contentContainer.find('ul:first');
+        },
         addWidget: function () {
             var widget = this.setting.id;
             var sectionParams = _.clone(api.section(widget).params);
@@ -117,23 +122,70 @@
 
             return section;
         },
+        initializeSortable: function () {
+            var parentContainer = this.getParentContainer();
+
+            parentContainer.sortable({
+                handle: '.' + settings.namespace + '-sort-widget-button',
+                items: '> li.customize-control-' + settings.namespace + '_edit_widget',
+                cancel: 'input,textarea,button:not(.' + settings.namespace + '-sort-widget-button),select,option',
+                stop: this._onSort.bind(this)
+            });
+            parentContainer.disableSelection();
+
+            return this;
+        },
         _onClick: function (event) {
             event.preventDefault();
             api.section(this.addWidget()).expand();
 
             return this;
         },
+        _onSort: function (event, ui) {
+            var parentContainer = this.getParentContainer();
+            var $el = ui.item;
+            var $widgets = parentContainer.find('> li.customize-control-' + settings.namespace + '_edit_widget').filter(':visible');
+            var widgets = _.filter(api.section(this.section()).controls(), function (control) {
+                return control.id.lastIndexOf(this.id + '[', 0) === 0;
+            }.bind(this));
+            var values = {};
+
+            _.forEach(widgets, function (widget) {
+                _.reduce(api.section(widget.id).controls(), function (values, control) {
+                    values[control.id] = api(control.id).get();
+
+                    return values;
+                }, values)
+            });
+            _.forEach(widgets, function (widget) {
+                var index = $widgets.index(widget.container);
+                var section = api.section(widget.id);
+
+                if (section.expanded()) {
+                    section.collapse();
+                }
+
+                _.forEach(section.controls(), function (control) {
+                    api(control.id.replace(/([^[]+\[\d+]\[[^\[]+])\[\d+](\[\w+])$/g, '$1[' + index + ']$2')).set(values[control.id]);
+                });
+            });
+
+            parentContainer.sortable('cancel');
+
+            return this;
+        },
         ready: function () {
             var lastIndex = this.getLastWidgetIndex();
+            var addWidget;
 
             this.index = 0;
 
             if (lastIndex > -1) {
-                _.forEach(_.range(lastIndex + 1), function () {
-                    this.addWidget();
-                }.bind(this));
+                addWidget = this.addWidget.bind(this);
+                _.forEach(_.range(lastIndex + 1), addWidget);
             }
 
+            this.initializeSortable();
             this.container.find('.button').on('click', this._onClick.bind(this));
 
             return this;

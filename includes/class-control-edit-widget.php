@@ -41,6 +41,7 @@ class ControlEditWidget extends \WP_Customize_Control
         $json['l10n'] = [
             'edit'          => sprintf( esc_html__( 'Edit %s', 'customize-static-layout' ), $this->label ),
             'remove'        => sprintf( esc_html__( 'Remove %s', 'customize-static-layout' ), $this->label ),
+            'sort'          => esc_html__( 'Sort', 'customize-static-layout' ),
             'confirmRemove' => esc_html__( 'Are you sure you wish to remove this widget?', 'customize-static-layout' ),
         ];
 
@@ -82,6 +83,10 @@ class ControlEditWidget extends \WP_Customize_Control
             type="button"
             class="button dashicons dashicons-trash <?= StaticLayout::NAME ?>-remove-widget-button"
             title="{{ data.l10n.remove }}"
+        ></button><button
+            type="button"
+            class="button dashicons dashicons-sort <?= StaticLayout::NAME ?>-sort-widget-button"
+            title="{{ data.l10n.sort }}"
         ></button>
         <?php
     }
