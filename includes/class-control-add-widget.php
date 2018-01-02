@@ -48,9 +48,12 @@ class ControlAddWidget extends \WP_Customize_Control
     public function enqueue()
     {
         parent::enqueue();
+
+        $suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+
         wp_enqueue_script(
             StaticLayout::NAME . '-control-add-widget',
-            plugins_url( 'assets/js/control-add-widget.js', __DIR__ ),
+            plugins_url( "assets/js/control-add-widget$suffix.js", __DIR__ ),
             [ 'jquery', 'underscore', 'jquery-ui-sortable', 'customize-models', StaticLayout::NAME . '-control-edit-widget' ],
             CUSTOMIZE_STATIC_LAYOUT,
             true

@@ -211,9 +211,11 @@ final class StaticLayout
      */
     private function _enqueue_scripts()
     {
+        $suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+
         wp_enqueue_script(
             static::NAME,
-            plugins_url( 'assets/js/admin.js', __DIR__ ),
+            plugins_url( "assets/js/admin$suffix.js", __DIR__ ),
             [ 'jquery', 'customize-controls' ],
             CUSTOMIZE_STATIC_LAYOUT,
             true
@@ -228,9 +230,11 @@ final class StaticLayout
      */
     private function _enqueue_preview_scripts()
     {
+        $suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+
         wp_enqueue_script(
             static::NAME . '-preview',
-            plugins_url( 'assets/js/preview.js', __DIR__ ),
+            plugins_url( "assets/js/preview$suffix.js", __DIR__ ),
             [ 'jquery', 'customize-preview' ],
             CUSTOMIZE_STATIC_LAYOUT,
             true

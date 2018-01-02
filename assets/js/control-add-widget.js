@@ -81,7 +81,7 @@
 
             api.add(new api.Setting(id, value, settingParams));
 
-            if (_.contains(['select', 'radio'], controlParams.type)) {
+            if (_.contains(['select'], controlParams.type)) {
                 $(controlParams.content).find('option').each(function (index, el) {
                     var $el = $(el);
 
@@ -141,9 +141,8 @@
 
             return this;
         },
-        _onSort: function (event, ui) {
+        _onSort: function () {
             var parentContainer = this.getParentContainer();
-            var $el = ui.item;
             var $widgets = parentContainer.find('> li.customize-control-' + settings.namespace + '_edit_widget').filter(':visible');
             var widgets = _.filter(api.section(this.section()).controls(), function (control) {
                 return control.id.lastIndexOf(this.id + '[', 0) === 0;

@@ -95,9 +95,11 @@ abstract class AbstractWidgetPost extends AbstractWidget
 
     protected function _enqueue_scripts()
     {
+        $suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+
         wp_enqueue_script(
             StaticLayout::NAME . '-widget-post',
-            plugins_url( 'assets/js/preview.js', __DIR__ ),
+            plugins_url( "assets/js/preview$suffix.js", __DIR__ ),
             [ 'jquery', 'underscore', 'customize-controls' ],
             CUSTOMIZE_STATIC_LAYOUT,
             true
