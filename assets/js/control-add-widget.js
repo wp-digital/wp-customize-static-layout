@@ -72,6 +72,7 @@
             var settingParams = _.clone(api.settings.settings[setting]);
             var value = '';
             var choices = {};
+            var Constructor = api.controlConstructor[controlParams.type] || api.Control;
 
             delete settingParams.value;
 
@@ -81,12 +82,23 @@
 
             api.add(new api.Setting(id, value, settingParams));
 
-            if (_.contains(['select'], controlParams.type)) {
+            if (controlParams.type === 'select') {
                 $(controlParams.content).find('option').each(function (index, el) {
                     var $el = $(el);
 
                     choices[$el.attr('value')] = $el.html();
                 });
+            }
+
+            if (controlParams.type === 'radio') {
+                $(controlParams.content).find('[type="radio"]').each(function (index, el) {
+                    var $el = $(el);
+
+                    choices[$el.attr('value')] = $el.next('label').html();
+                });
+            }
+
+            if (!_.isEmpty(choices)) {
                 controlParams.choices = choices;
             }
 
@@ -95,7 +107,7 @@
             delete controlParams.instanceNumber;
 
             controlParams.setting = id;
-            api.control.add(new api.Control(id, controlParams));
+            api.control.add(new Constructor(id, controlParams));
 
             return {
                 id: id,

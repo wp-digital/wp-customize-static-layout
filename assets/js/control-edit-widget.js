@@ -101,7 +101,6 @@
             event.preventDefault();
             var baseId = this.getBaseId();
             var widgetId = api.control(baseId).addWidget();
-            var widget = api.section(this.setting.id);
 
             _.forEach(api.section(this.setting.id).controls(), function (control) {
                 api(widgetId + '[' + this.getNameById(control.id) + ']').set(api(control.id).get());
