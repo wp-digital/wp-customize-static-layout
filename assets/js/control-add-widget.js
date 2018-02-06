@@ -82,12 +82,13 @@
 
             api.add(new api.Setting(id, value, settingParams));
 
-            if (controlParams.type === 'select') {
+            if (_.contains(['select', 'dropdown-pages'], controlParams.type)) {
                 $(controlParams.content).find('option').each(function (index, el) {
                     var $el = $(el);
 
                     choices[$el.attr('value')] = $el.html();
                 });
+                controlParams.type = 'select';
             }
 
             if (controlParams.type === 'radio') {
