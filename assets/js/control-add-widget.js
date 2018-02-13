@@ -187,17 +187,20 @@
             return this;
         },
         ready: function () {
-            var lastIndex = this.getLastWidgetIndex();
-            var addWidget;
-
             this.index = 0;
 
-            if (lastIndex > -1) {
-                addWidget = this.addWidget.bind(this);
-                _.forEach(_.range(lastIndex + 1), addWidget);
-            }
+            _.defer(function () {
+                var lastIndex = this.getLastWidgetIndex();
+                var addWidget;
 
-            this.initializeSortable();
+                if (lastIndex > -1) {
+                    addWidget = this.addWidget.bind(this);
+                    _.forEach(_.range(lastIndex + 1), addWidget);
+                }
+
+                this.initializeSortable();
+            }.bind(this));
+
             this.container.find('.button').on('click', this._onClick.bind(this));
 
             return this;

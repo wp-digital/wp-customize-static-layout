@@ -76,4 +76,9 @@ class ControlAddWidget extends \WP_Customize_Control
         >{{{ data.l10n.addNew }}}</button>
         <?php
     }
+
+    protected function render_content()
+    {
+
+    }
 }

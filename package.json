@@ -1,6 +1,6 @@
 {
   "name": "Customize Static Layout",
-  "version": "1.0.8.beta",
+  "version": "1.1.0.beta",
   "description": "Manage static layout via the Customizer.",
   "main": "index.js",
   "scripts": {

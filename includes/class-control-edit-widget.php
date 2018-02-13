@@ -99,5 +99,8 @@ class ControlEditWidget extends \WP_Customize_Control
         <?php
     }
 
+    protected function render_content()
+    {
 
+    }
 }

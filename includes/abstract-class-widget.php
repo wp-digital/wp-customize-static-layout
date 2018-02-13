@@ -51,7 +51,7 @@ abstract class AbstractWidget extends \WP_Customize_Section
     /**
      * Adds control (field) to widget
      *
-     * @param        $id
+     * @param string $id
      * @param array  $args
      * @param string $control_class
      */
