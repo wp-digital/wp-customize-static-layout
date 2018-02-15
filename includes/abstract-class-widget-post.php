@@ -99,7 +99,7 @@ abstract class AbstractWidgetPost extends AbstractWidget
 
         wp_enqueue_script(
             StaticLayout::NAME . '-widget-post',
-            plugins_url( "assets/js/preview$suffix.js", __DIR__ ),
+            plugins_url( "assets/js/widget-post$suffix.js", __DIR__ ),
             [ 'jquery', 'underscore', 'customize-controls' ],
             CUSTOMIZE_STATIC_LAYOUT,
             true
