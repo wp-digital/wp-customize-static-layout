@@ -17,10 +17,6 @@ abstract class AbstractWidgetPost extends AbstractWidget
      * @var \WP_Query|null
      */
     protected static $_query = null;
-    /**
-     * @var array
-     */
-    protected static $_ids_settings = [];
 
     /**
      * Constructor
@@ -78,8 +74,7 @@ abstract class AbstractWidgetPost extends AbstractWidget
                 'allowClear'  => true,
                 'placeholder' => __( '&mdash; Select &mdash;', 'customize-static-layout' ),
             ],
-        ], 'CustomizeObjectSelector\Control');
-        self::$_ids_settings[] = "{$this->id}[id]";
+        ], 'CustomizeObjectSelector\Control' );
     }
 
     /**
@@ -104,8 +99,5 @@ abstract class AbstractWidgetPost extends AbstractWidget
             CUSTOMIZE_STATIC_LAYOUT,
             true
         );
-        wp_localize_script( StaticLayout::NAME . '-widget-post', 'customizeStaticLayoutWidgetPost', [
-            'ids' => self::$_ids_settings,
-        ] );
     }
 }
