@@ -1,6 +1,6 @@
 {
   "name": "wp-customize-static-layout",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Manage static layout via the Customizer.",
   "main": "index.js",
   "scripts": {
@@ -11,15 +11,16 @@
     "url": "git+https://github.com/redink-no/wp-customize-static-layout.git"
   },
   "author": "Innocode",
-  "license": "ISC",
+  "license": "GPL-2.0+",
   "bugs": {
     "url": "https://github.com/redink-no/wp-customize-static-layout/issues"
   },
   "homepage": "https://github.com/redink-no/wp-customize-static-layout#readme",
-  "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-clean-css": "^3.9.2",
-    "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^3.0.0"
+  "devDependencies": {},
+  "dependencies": {
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.2.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-uglify": "^3.0.2"
   }
 }

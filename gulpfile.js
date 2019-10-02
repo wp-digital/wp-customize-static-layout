@@ -15,4 +15,4 @@ gulp.task('js', () => gulp.src(['./assets/js/*.js', '!./assets/js/*.min.js'])
         path.basename += '.min';
     }))
     .pipe(gulp.dest('./assets/js')));
-gulp.task('default', ['css', 'js']);
+gulp.task('default', gulp.series('css', 'js'));
