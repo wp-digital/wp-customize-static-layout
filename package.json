@@ -4,7 +4,7 @@
   "description": "Manage static layout via the Customizer.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "gulp"
   },
   "repository": {
     "type": "git",
@@ -16,11 +16,12 @@
     "url": "https://github.com/innocode-digital/wp-customize-static-layout/issues"
   },
   "homepage": "https://github.com/innocode-digital/wp-customize-static-layout#readme",
-  "devDependencies": {},
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",
     "gulp-rename": "^1.4.0",
-    "gulp-uglify": "^3.0.2"
+    "gulp-uglify": "^3.0.2",
+    "yargs-parser": "^20.2.4"
   }
 }
