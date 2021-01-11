@@ -1,0 +1,22 @@
+{
+  "name": "innocode-digital/wp-customize-static-layout",
+  "version": "1.3.1",
+  "type": "wordpress-plugin",
+  "license": "GPL-2.0+",
+  "require": {
+    "php": ">=5.5",
+    "composer/installers": "~1.0"
+  },
+  "description": "Manage static layout via the Customizer.",
+  "authors": [
+    {
+      "name": "Innocode",
+      "email": "post@innocode.no",
+      "homepage": "https://innocode.com/"
+    },
+    {
+      "name": "Viktor Kuliebiakin",
+      "email": "kuliebiakin@gmail.com"
+    }
+  ]
+}

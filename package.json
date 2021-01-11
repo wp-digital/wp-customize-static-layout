@@ -13,9 +13,9 @@
   "author": "Innocode",
   "license": "GPL-2.0+",
   "bugs": {
-    "url": "https://github.com/redink-no/wp-customize-static-layout/issues"
+    "url": "https://github.com/innocode-digital/wp-customize-static-layout/issues"
   },
-  "homepage": "https://github.com/redink-no/wp-customize-static-layout#readme",
+  "homepage": "https://github.com/innocode-digital/wp-customize-static-layout#readme",
   "devDependencies": {},
   "dependencies": {
     "gulp": "^4.0.2",
