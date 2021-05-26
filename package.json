@@ -16,7 +16,6 @@
     "url": "https://github.com/innocode-digital/wp-customize-static-layout/issues"
   },
   "homepage": "https://github.com/innocode-digital/wp-customize-static-layout#readme",
-  "dependencies": {},
   "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",
