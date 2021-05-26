@@ -3,10 +3,10 @@
  * Plugin Name: Customize Static Layout
  * Description: Manage static layout via the Customizer.
  * Plugin URI: https://github.com/redink-no/wp-customize-static-layout
- * Version: 1.3.2
+ * Version: 1.3.3
  * Author: Innocode
  * Author URI: https://innocode.no/
- * Tested up to: 5.5.3
+ * Tested up to: 5.7.2
  * Text Domain: customize-static-layout
  * License: GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -14,7 +14,7 @@
  * @package CustomizeStaticLayout
  */
 
-define( 'CUSTOMIZE_STATIC_LAYOUT', '1.3.2' );
+define( 'CUSTOMIZE_STATIC_LAYOUT', '1.3.3' );
 
 require_once __DIR__ . '/includes/class-static-layout.php';
 

@@ -1,6 +1,6 @@
 {
   "name": "innocode-digital/wp-customize-static-layout",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "type": "wordpress-plugin",
   "license": "GPL-2.0+",
   "require": {
